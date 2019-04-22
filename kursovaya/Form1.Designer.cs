@@ -69,7 +69,6 @@
             this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Save...";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // button3
             // 
@@ -79,7 +78,6 @@
             this.button3.TabIndex = 7;
             this.button3.Text = "View dictionary";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.BtnDict_Click);
             // 
             // btnClear
             // 
@@ -125,7 +123,6 @@
             this.gbSelector.TabIndex = 12;
             this.gbSelector.TabStop = false;
             this.gbSelector.Text = "Select the desired function";
-            this.gbSelector.Enter += new System.EventHandler(this.GroupBox1_Enter);
             // 
             // gbEditor
             // 
@@ -261,7 +258,6 @@
             this.outputTxtBox.Name = "outputTxtBox";
             this.outputTxtBox.Size = new System.Drawing.Size(269, 26);
             this.outputTxtBox.TabIndex = 5;
-            this.outputTxtBox.TextChanged += new System.EventHandler(this.OutputTxtBox_TextChanged);
             // 
             // inputTxtBox
             // 
@@ -269,7 +265,6 @@
             this.inputTxtBox.Name = "inputTxtBox";
             this.inputTxtBox.Size = new System.Drawing.Size(280, 26);
             this.inputTxtBox.TabIndex = 4;
-            this.inputTxtBox.TextChanged += new System.EventHandler(this.InputTxtBox_TextChanged);
             this.inputTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputTxtBox_KeyPress);
             // 
             // Form1
