@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 using kursovaya;
 
 namespace kursovaya
@@ -33,9 +34,14 @@ namespace kursovaya
                 e.Cancel = true;
         }
 
+        OpenFileDialog openFileDialog = new OpenFileDialog();
         private void BtnOpen_Click(object sender, EventArgs e)
         {
-
+            openFileDialog.Filter = "TXT|*.txt";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                inputTxtBox.Text = File.ReadAllText(openFileDialog.FileName);
+            }
         }
 
         private void BtnClear_Click(object sender, EventArgs e)
@@ -44,57 +50,11 @@ namespace kursovaya
             outputTxtBox.Text = "";
         }
 
-        private void BtnDict_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CbChooseOption_MouseClick(object sender, MouseEventArgs e)
-        {
-
-
-        }
-
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GroupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ComboBox3_Click(object sender, EventArgs e) { }
-
         private void InputTxtBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Char.IsNumber(e.KeyChar) == false) return; // проверка ввода
             e.Handled = true;
             return;
-        }
-
-        private void InputTxtBox_TextChanged(object sender, EventArgs e)
-        {
-            //string inputtedText = Convert.ToString(inputTxtBox.Text);
-            //inputtedText
-        }
-
-        private void OutputTxtBox_TextChanged(object sender, EventArgs e)
-        {
-            //string outputtedText = Convert.ToString(inputTxtBox.Text);
-            
-            
         }
 
         private void BtnConvert_Click(object sender, EventArgs e)
@@ -145,18 +105,20 @@ namespace kursovaya
                 rbFrench.Visible = false;
                 rbGerman.Visible = false;
                 rbScientific.Visible = false;
-            }
-            
+            }            
         }
 
-        private void CbReverse_Click(object sender, EventArgs e)
+        SaveFileDialog saveFileDialog = new SaveFileDialog();
+        private void BtnSave_Click(object sender, EventArgs e)
         {
-            //удоли
-        }
-
-        private void CbReverse_CheckedChanged(object sender, EventArgs e)
-        {
-            //удоли
+            saveFileDialog.Filter = "TXT|*.txt";
+            if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
+                return;
+            // получаем выбранный файл
+            string filename = saveFileDialog.FileName;
+            // сохраняем текст в файл
+            System.IO.File.WriteAllText(filename, outputTxtBox.Text);
+            MessageBox.Show("Файл сохранен");
         }
     }
     
