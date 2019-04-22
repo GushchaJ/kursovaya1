@@ -37,7 +37,7 @@ namespace kursovaya
         OpenFileDialog openFileDialog = new OpenFileDialog();
         private void BtnOpen_Click(object sender, EventArgs e)
         {
-            openFileDialog.Filter = "TXT|*.txt";
+            openFileDialog.Filter = ".txt|*.txt";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 inputTxtBox.Text = File.ReadAllText(openFileDialog.FileName);
@@ -68,7 +68,7 @@ namespace kursovaya
             else if (rbTransliterate.Checked)
             {
                 Transliteration transliteration = new Transliteration(inputTxtBox.Text, outputTxtBox, rbFrench, rbGerman, rbISO9,
-                    rbScientific);
+                    rbScientific, cbCheckLetters);
             }
         }
 
@@ -111,14 +111,14 @@ namespace kursovaya
         SaveFileDialog saveFileDialog = new SaveFileDialog();
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            saveFileDialog.Filter = "TXT|*.txt";
+            saveFileDialog.Filter = ".txt|*.txt";
             if (saveFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
             // получаем выбранный файл
             string filename = saveFileDialog.FileName;
             // сохраняем текст в файл
             System.IO.File.WriteAllText(filename, outputTxtBox.Text);
-            MessageBox.Show("Файл сохранен");
+            MessageBox.Show("Файл сохранен", "Результат");
         }
     }
     

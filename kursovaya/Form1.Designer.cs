@@ -47,6 +47,9 @@
             this.btnConvert = new System.Windows.Forms.Button();
             this.outputTxtBox = new System.Windows.Forms.TextBox();
             this.inputTxtBox = new System.Windows.Forms.TextBox();
+            this.cbCheckLetters = new System.Windows.Forms.CheckBox();
+            this.cbVowel = new System.Windows.Forms.CheckBox();
+            this.cbСonsonant = new System.Windows.Forms.CheckBox();
             this.gbSelector.SuspendLayout();
             this.gbEditor.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +66,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(554, 262);
+            this.btnSave.Location = new System.Drawing.Point(563, 289);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 6;
@@ -73,7 +76,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(19, 262);
+            this.button3.Location = new System.Drawing.Point(22, 289);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(112, 23);
             this.button3.TabIndex = 7;
@@ -127,6 +130,9 @@
             // 
             // gbEditor
             // 
+            this.gbEditor.Controls.Add(this.cbСonsonant);
+            this.gbEditor.Controls.Add(this.cbVowel);
+            this.gbEditor.Controls.Add(this.cbCheckLetters);
             this.gbEditor.Controls.Add(this.rbFrench);
             this.gbEditor.Controls.Add(this.rbGerman);
             this.gbEditor.Controls.Add(this.rbScientific);
@@ -142,7 +148,7 @@
             this.gbEditor.Controls.Add(this.btnOpen);
             this.gbEditor.Location = new System.Drawing.Point(13, 94);
             this.gbEditor.Name = "gbEditor";
-            this.gbEditor.Size = new System.Drawing.Size(616, 147);
+            this.gbEditor.Size = new System.Drawing.Size(625, 189);
             this.gbEditor.TabIndex = 13;
             this.gbEditor.TabStop = false;
             this.gbEditor.Text = "Editor";
@@ -245,7 +251,7 @@
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(500, 106);
+            this.btnConvert.Location = new System.Drawing.Point(500, 124);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(92, 23);
             this.btnConvert.TabIndex = 9;
@@ -268,12 +274,42 @@
             this.inputTxtBox.TabIndex = 4;
             this.inputTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputTxtBox_KeyPress);
             // 
+            // cbCheckLetters
+            // 
+            this.cbCheckLetters.AutoSize = true;
+            this.cbCheckLetters.Location = new System.Drawing.Point(323, 95);
+            this.cbCheckLetters.Name = "cbCheckLetters";
+            this.cbCheckLetters.Size = new System.Drawing.Size(126, 22);
+            this.cbCheckLetters.TabIndex = 18;
+            this.cbCheckLetters.Text = "Check ngraphs";
+            this.cbCheckLetters.UseVisualStyleBackColor = true;
+            // 
+            // cbVowel
+            // 
+            this.cbVowel.AutoSize = true;
+            this.cbVowel.Location = new System.Drawing.Point(323, 124);
+            this.cbVowel.Name = "cbVowel";
+            this.cbVowel.Size = new System.Drawing.Size(90, 22);
+            this.cbVowel.TabIndex = 19;
+            this.cbVowel.Text = "Vowel Up";
+            this.cbVowel.UseVisualStyleBackColor = true;
+            // 
+            // cbСonsonant
+            // 
+            this.cbСonsonant.AutoSize = true;
+            this.cbСonsonant.Location = new System.Drawing.Point(323, 153);
+            this.cbСonsonant.Name = "cbСonsonant";
+            this.cbСonsonant.Size = new System.Drawing.Size(122, 22);
+            this.cbСonsonant.TabIndex = 20;
+            this.cbСonsonant.Text = "Сonsonant Up";
+            this.cbСonsonant.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(650, 297);
+            this.ClientSize = new System.Drawing.Size(659, 324);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbSelector);
@@ -313,6 +349,9 @@
         private System.Windows.Forms.RadioButton rbFrench;
         private System.Windows.Forms.RadioButton rbGerman;
         private System.Windows.Forms.RadioButton rbScientific;
+        private System.Windows.Forms.CheckBox cbCheckLetters;
+        private System.Windows.Forms.CheckBox cbСonsonant;
+        private System.Windows.Forms.CheckBox cbVowel;
     }
 }
 
