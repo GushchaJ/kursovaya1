@@ -68,7 +68,7 @@ namespace kursovaya
             else if (rbTransliterate.Checked)
             {
                 Transliteration transliteration = new Transliteration(inputTxtBox.Text, outputTxtBox, rbFrench, rbGerman, rbISO9,
-                    rbScientific, cbCheckLetters);
+                    rbScientific, cbCheckLetters, cbVowel, cbСonsonant);
             }
         }
 

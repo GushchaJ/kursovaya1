@@ -18,9 +18,12 @@ namespace kursovaya
         RadioButton RbIso9 { get; set; }
         RadioButton RbScientific { get; set; }
         CheckBox CbCheckLetters { get; set; }
+        CheckBox CbVowel { get; set; }
+        CheckBox CbСonsonant { get; set; }
 
         public Transliteration(string inputtedText, TextBox outputtedtextBox, RadioButton rbFrench,
-            RadioButton rbGerman, RadioButton rbISO9, RadioButton rbScientific, CheckBox cbCheckLetters)
+            RadioButton rbGerman, RadioButton rbISO9, RadioButton rbScientific, CheckBox cbCheckLetters,
+            CheckBox cbVowel, CheckBox cbСonsonant)
         {
             InputtedText = inputtedText;
             OutputtedTextBox = outputtedtextBox;
@@ -30,6 +33,8 @@ namespace kursovaya
             RbGerman = rbGerman;
             RbIso9 = rbISO9;
             CbCheckLetters = cbCheckLetters;
+            CbVowel = cbVowel;
+            CbСonsonant = cbСonsonant;
 
             string[] rus_up = { "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О",
                 "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я" };
@@ -38,7 +43,7 @@ namespace kursovaya
 
             if (rbFrench.Checked)
             {
-                inputtedText = French(inputtedText, rus_up, rus_low, cbCheckLetters);
+                inputtedText = French(inputtedText, rus_up, rus_low, cbCheckLetters, cbVowel);
             }
             else if(rbGerman.Checked)
             {
@@ -89,7 +94,6 @@ namespace kursovaya
                     }
                 }
             }
-
             return inputtedText;
         }
 
@@ -119,18 +123,55 @@ namespace kursovaya
 
             return CheckLetters(ref inputtedText, rus_up, rus_low, cbCheckLetters, lat_up, lat_low, length);
         }
-        private static string French(string inputtedText, string[] rus_up, string[] rus_low, CheckBox cbCheckLetters)
+        private static string French(string inputtedText, string[] rus_up, string[] rus_low, CheckBox cbCheckLetters, 
+            CheckBox cbVowel)
         {
             string[] lat_up = { "A", "B", "V", "G", "D", "E", "IO", "J", "Z", "I", "Ï", "K", "L", "M",
                 "N", "O", "P", "R", "S", "T", "OU", "F", "KX", "TS", "TCH", "CH", "CHTCH", "''", "Y",
                 "'", "E", "ÏOU", "ÏA" };
             string[] lat_low = { "a", "b", "v", "g", "d", "e", "io", "j", "z", "i", "ï", "k", "l", "m",
                 "n", "o", "p", "r", "s", "t", "ou", "f", "kx", "ts", "tch", "ch", "chtch", "''", "y",
-                "'", "e", "yu", "ya" };
+                "'", "e", "iou", "ia" };
+            string[] vowels = {"A", "a", "E", "e", "IO", "io", "I", "i", "O", "o", "OU", "ou",
+                "Y'", "y'", "IOU", "iou", "IA", "ia"};
+            string[] consonant = { "B", "V", "G", "D", "J", "Z", "Ï", "K", "L", "M", "N",
+                 "P", "R", "S", "T", "F", "KX", "TS", "TCH", "CH", "CHTCH", "''", "'", "b", "v", "g", "d", "j", "z",
+                 "ï", "k", "l", "m", "n", "p", "r", "s", "t", "f", "kx", "ts", "tch", "ch", "chtch", "''", "'"};
+
             int length = lat_up.Length;
+            if (cbCheckLetters.Checked)
+            {
+                return Vowels(ref inputtedText, rus_up, rus_low, cbVowel, lat_up, lat_low, vowels, length);
+            }
+            if (cbVowel.Checked)
+            {
+                return CheckLetters(ref inputtedText, rus_up, rus_low, cbCheckLetters, lat_up, lat_low, length);
+            }
+            return inputtedText;
+        }
 
-
-            return CheckLetters(ref inputtedText, rus_up, rus_low, cbCheckLetters, lat_up, lat_low, length);
+        private static string Vowels(ref string inputtedText, string[] rus_up, string[] rus_low, CheckBox cbVowel, string[] lat_up, string[] lat_low, string[] vowels, int length)
+        {
+            for (int i = 0; i <= length; i++)
+            {
+                if (cbVowel.Checked)
+                {
+                    for (int j = 0; j < length; j++)
+                    {
+                        if (rus_low[j]==vowels[j] | rus_up[j]==vowels[j])
+                        {
+                            inputtedText = inputtedText.Replace(rus_up[j], lat_up[j]);
+                            inputtedText = inputtedText.Replace(rus_low[j], lat_up[j]);
+                        }
+                        else
+                        {
+                            inputtedText = inputtedText.Replace(rus_up[i], lat_up[i]);
+                            inputtedText = inputtedText.Replace(rus_low[i], lat_low[i]);
+                        }
+                    }
+                }
+            }
+            return inputtedText;
         }
     }
 }
