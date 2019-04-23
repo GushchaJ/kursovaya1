@@ -35,6 +35,7 @@ namespace kursovaya
             CbCheckLetters = cbCheckLetters;
             CbVowel = cbVowel;
             CbСonsonant = cbСonsonant;
+            
 
             string[] rus_up = { "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О",
                 "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я" };
@@ -43,25 +44,90 @@ namespace kursovaya
 
             if (rbFrench.Checked)
             {
-                inputtedText = French(inputtedText, rus_up, rus_low, cbCheckLetters, cbVowel);
+                inputtedText = French(inputtedText, rus_up, rus_low, cbCheckLetters, cbVowel, cbСonsonant);
+                if(cbCheckLetters.Checked)
+                {
+
+                }
+                if(cbVowel.Checked)
+                {
+
+                }
+                if(cbСonsonant.Checked)
+                {
+
+                }
             }
             else if(rbGerman.Checked)
             {
-                inputtedText = German(inputtedText, rus_up, rus_low, cbCheckLetters);
+                inputtedText = German(inputtedText, rus_up, rus_low, cbCheckLetters, cbVowel, cbСonsonant);
             }
             else if (rbISO9.Checked)
             {
-                inputtedText = Iso9(inputtedText, rus_up, rus_low, cbCheckLetters);
+                inputtedText = Iso9(inputtedText, rus_up, rus_low, cbCheckLetters, cbVowel, cbСonsonant);
             }
             else if(rbScientific.Checked)
             {
-                inputtedText = Scientific(inputtedText, rus_up, rus_low, cbCheckLetters);
+                inputtedText = Scientific(inputtedText, rus_up, rus_low, cbCheckLetters, cbVowel, cbСonsonant);
             }
             outputtedtextBox.Text = inputtedText;
+
+            
             
         }
+        private static string Transliterate(ref string inputtedText, string[] rus_up, string[] rus_low,
+            string[] lat_up, string[] lat_low, string[] consonant, string[] vowels, int length, 
+            CheckBox cbCheckLetters, CheckBox cbVowel, 
+            CheckBox cbConsonant)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                inputtedText = inputtedText.Replace(rus_up[i], lat_up[i]);
+                inputtedText = inputtedText.Replace(rus_low[i], lat_low[i]);
+            }
 
-        private static string Iso9(string inputtedText, string[] rus_up, string[] rus_low, CheckBox cbCheckLetters)
+            if (cbCheckLetters.Checked)
+            {
+                for (int i = 0; i < 32; i++)
+                {
+                    if (lat_up[i].Length > rus_up[i].Length | lat_low[i].Length > rus_low[i].Length)
+                    {
+                        inputtedText = inputtedText.Replace(lat_low[i], lat_up[i]);
+
+                    }
+                }                    
+            }
+
+            if (cbVowel.Checked)
+            {
+                for (int i = 0; i < inputtedText.Length; i++)
+                {
+                    foreach (var item in vowels)
+                    {
+                        if (inputtedText.Contains(item))
+                        {
+                            inputtedText = inputtedText.Replace(item, item.ToUpperInvariant());
+                        }                        
+                    }
+                }
+            }
+            if (cbConsonant.Checked)
+            {
+                for (int i = 0; i < inputtedText.Length; i++)
+                {
+                    foreach (var item in consonant)
+                    {
+                        if (inputtedText.Contains(item))
+                        {
+                            inputtedText = inputtedText.Replace(item, item.ToUpperInvariant());
+                        }
+                    }
+                }
+            }
+            return inputtedText;
+        }
+        private static string Iso9(string inputtedText, string[] rus_up, string[] rus_low, 
+            CheckBox cbCheckLetters, CheckBox cbVowel, CheckBox cbConsonant)
         {
             string[] lat_up = { "A", "B", "V", "G", "D", "E", "YO", "ZH", "Z", "I", "J", "K",
                 "L", "M", "N", "O", "P", "R", "S", "T", "U", "F", "X", "CZ", "CH", "SH", "SHH",
@@ -69,35 +135,18 @@ namespace kursovaya
             string[] lat_low = { "a", "b", "v", "g", "d", "e", "yo", "zh", "z", "i", "j", "k",
                 "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "x", "cz", "ch", "sh", "shh",
                 "''", "y", "'", "e", "yu", "ya" };
+            string[] vowels = {"a", "e", "yo", "i", "o", "u", "y", "yu", "ya", "A", "E", "YO", "I",
+                "O", "U", "e'", "E'", "YU", "YA", "Y" };
+            string[] consonant = { "b", "v", "g", "d", "zh", "z", "j", "k", "l", "m", "n", "p",
+                "r", "s", "t", "f", "x", "cz", "ch", "sh", "shh", "''", "'", "B", "V", "G", "D",
+                "ZH", "Z", "J", "K", "L", "M", "N", "P", "R", "S", "T", "F", "X", "CZ", "CH", "SH",
+                "SHH" };            
             int length = lat_up.Length;
-            return CheckLetters(ref inputtedText, rus_up, rus_low, cbCheckLetters, lat_up, lat_low, length);
+            return Transliterate(ref inputtedText, rus_up, rus_low, lat_up, lat_low, consonant,
+                vowels, length, cbCheckLetters, cbVowel, cbConsonant);
         }
-
-        private static string CheckLetters(ref string inputtedText, string[] rus_up, string[] rus_low, CheckBox cbCheckLetters, string[] lat_up, string[] lat_low, int length)
-        {
-            for (int i = 0; i <= 32; i++)
-            {
-                if (cbCheckLetters.Checked)
-                {
-                    for (int j = 0; j < length; j++)
-                    {
-                        if (lat_up[j].Length > rus_up[j].Length | lat_low[j].Length > rus_low[j].Length)
-                        {
-                            inputtedText = inputtedText.Replace(rus_up[j], lat_up[j]);
-                            inputtedText = inputtedText.Replace(rus_low[j], lat_up[j]);
-                        }
-                        else
-                        {
-                            inputtedText = inputtedText.Replace(rus_up[i], lat_up[i]);
-                            inputtedText = inputtedText.Replace(rus_low[i], lat_low[i]);
-                        }
-                    }
-                }
-            }
-            return inputtedText;
-        }
-
-        private static string Scientific(string inputtedText, string[] rus_up, string[] rus_low, CheckBox cbCheckLetters)
+        private static string Scientific(string inputtedText, string[] rus_up, string[] rus_low, 
+            CheckBox cbCheckLetters, CheckBox cbVowel, CheckBox cbConsonant)
         {
             string[] lat_up = { "A", "B", "V", "G", "D", "E", "Ё", "Ž", "Z", "I", "J", "K", "L",
                 "M", "N", "O", "P", "R", "S", "T", "U", "F", "H", "C", "Č", "Š", "Ŝ", "''", "Y",
@@ -106,11 +155,18 @@ namespace kursovaya
                 "m", "n", "o", "p", "r", "s", "t", "u", "f", "h", "c", "č", "š", "ŝ", "''", "y",
                 "'", "è", "û", "â" };
             int length = lat_up.Length;
+            string[] vowels = {"A", "E", "Ё", "I", "O", "U", "Y", "È", "Û", "Â",
+                "a", "e", "ё", "i", "o", "u", "y", "è", "û", "â" };
+            string[] consonant = {"B", "V", "G", "D", "Ž", "Z", "J", "K", "L",
+                "M", "N", "P", "R", "S", "T", "F", "H", "C", "Č", "Š", "Ŝ", "''",
+                "'", "b", "v", "g", "d", "ž", "z", "j", "k", "l", "m", "n", "p",
+                "r", "s", "t", "f", "h", "c", "č", "š", "ŝ", };
 
-
-            return CheckLetters(ref inputtedText, rus_up, rus_low, cbCheckLetters, lat_up, lat_low, length);
+            return Transliterate(ref inputtedText, rus_up, rus_low, lat_up, lat_low, consonant,
+                vowels, length, cbCheckLetters, cbVowel, cbConsonant);
         }
-        private static string German(string inputtedText, string[] rus_up, string[] rus_low, CheckBox cbCheckLetters)
+        private static string German(string inputtedText, string[] rus_up, string[] rus_low, 
+            CheckBox cbCheckLetters, CheckBox cbVowel, CheckBox cbConsonant)
         {
             string[] lat_up = { "A", "B", "W", "G", "D", "E", "JO", "SCH", "S", "I", "J", "K", "L", "M",
                 "N", "O", "P", "R", "S", "T", "U", "F", "CH", "Z", "TSCH", "SCH", "SCHTSCH", "''", "Y",
@@ -118,13 +174,19 @@ namespace kursovaya
             string[] lat_low = { "a", "b", "w", "g", "d", "e", "jo", "sch", "s", "i", "y", "k", "l",
                 "m", "n", "o", "p", "r", "s", "t", "u", "f", "ch", "z", "tsch", "sch", "schtsch", "''",
                 "y", "'", "e", "ju", "ja" };
+            string[] vowels = { "A", "E", "JO", "I", "O", "U", "JU", "JA", "Y",
+            "a", "e", "jo", "i", "o", "u", "ju", "ja", "y"};
+            string[] consonant = { "B", "W", "G", "D", "SCH", "S","J", "K", "L", "M", "N", "P", "R", "S", "T",
+            "F", "CH", "Z", "TSCH", "SCH", "SCHTSCH", "''", "'","b", "w", "g", "d", "sch", "s","y", "k", "l",
+                "m", "n","p", "r", "s", "t","f", "ch", "z", "tsch", "sch", "schtsch"};
+
             int length = lat_up.Length;
-
-
-            return CheckLetters(ref inputtedText, rus_up, rus_low, cbCheckLetters, lat_up, lat_low, length);
+            
+            return Transliterate(ref inputtedText, rus_up, rus_low, lat_up, lat_low, consonant,
+                vowels, length, cbCheckLetters, cbVowel, cbConsonant);
         }
         private static string French(string inputtedText, string[] rus_up, string[] rus_low, CheckBox cbCheckLetters, 
-            CheckBox cbVowel)
+            CheckBox cbVowel, CheckBox cbConsonant)
         {
             string[] lat_up = { "A", "B", "V", "G", "D", "E", "IO", "J", "Z", "I", "Ï", "K", "L", "M",
                 "N", "O", "P", "R", "S", "T", "OU", "F", "KX", "TS", "TCH", "CH", "CHTCH", "''", "Y",
@@ -139,39 +201,9 @@ namespace kursovaya
                  "ï", "k", "l", "m", "n", "p", "r", "s", "t", "f", "kx", "ts", "tch", "ch", "chtch", "''", "'"};
 
             int length = lat_up.Length;
-            if (cbCheckLetters.Checked)
-            {
-                return Vowels(ref inputtedText, rus_up, rus_low, cbVowel, lat_up, lat_low, vowels, length);
-            }
-            if (cbVowel.Checked)
-            {
-                return CheckLetters(ref inputtedText, rus_up, rus_low, cbCheckLetters, lat_up, lat_low, length);
-            }
-            return inputtedText;
-        }
-
-        private static string Vowels(ref string inputtedText, string[] rus_up, string[] rus_low, CheckBox cbVowel, string[] lat_up, string[] lat_low, string[] vowels, int length)
-        {
-            for (int i = 0; i <= length; i++)
-            {
-                if (cbVowel.Checked)
-                {
-                    for (int j = 0; j < length; j++)
-                    {
-                        if (rus_low[j]==vowels[j] | rus_up[j]==vowels[j])
-                        {
-                            inputtedText = inputtedText.Replace(rus_up[j], lat_up[j]);
-                            inputtedText = inputtedText.Replace(rus_low[j], lat_up[j]);
-                        }
-                        else
-                        {
-                            inputtedText = inputtedText.Replace(rus_up[i], lat_up[i]);
-                            inputtedText = inputtedText.Replace(rus_low[i], lat_low[i]);
-                        }
-                    }
-                }
-            }
-            return inputtedText;
-        }
+            
+            return Transliterate(ref inputtedText, rus_up, rus_low, lat_up, lat_low, consonant,
+                vowels, length, cbCheckLetters, cbVowel, cbConsonant);
+        }        
     }
 }
