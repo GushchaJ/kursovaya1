@@ -36,6 +36,9 @@
             this.rbTransliterate = new System.Windows.Forms.RadioButton();
             this.gbSelector = new System.Windows.Forms.GroupBox();
             this.gbEditor = new System.Windows.Forms.GroupBox();
+            this.cbСonsonant = new System.Windows.Forms.CheckBox();
+            this.cbVowel = new System.Windows.Forms.CheckBox();
+            this.cbCheckLetters = new System.Windows.Forms.CheckBox();
             this.rbFrench = new System.Windows.Forms.RadioButton();
             this.rbGerman = new System.Windows.Forms.RadioButton();
             this.rbScientific = new System.Windows.Forms.RadioButton();
@@ -47,9 +50,6 @@
             this.btnConvert = new System.Windows.Forms.Button();
             this.outputTxtBox = new System.Windows.Forms.TextBox();
             this.inputTxtBox = new System.Windows.Forms.TextBox();
-            this.cbCheckLetters = new System.Windows.Forms.CheckBox();
-            this.cbVowel = new System.Windows.Forms.CheckBox();
-            this.cbСonsonant = new System.Windows.Forms.CheckBox();
             this.gbSelector.SuspendLayout();
             this.gbEditor.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +82,7 @@
             this.button3.TabIndex = 7;
             this.button3.Text = "View dictionary";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // btnClear
             // 
@@ -152,6 +153,36 @@
             this.gbEditor.TabIndex = 13;
             this.gbEditor.TabStop = false;
             this.gbEditor.Text = "Editor";
+            // 
+            // cbСonsonant
+            // 
+            this.cbСonsonant.AutoSize = true;
+            this.cbСonsonant.Location = new System.Drawing.Point(323, 153);
+            this.cbСonsonant.Name = "cbСonsonant";
+            this.cbСonsonant.Size = new System.Drawing.Size(122, 22);
+            this.cbСonsonant.TabIndex = 20;
+            this.cbСonsonant.Text = "Сonsonant Up";
+            this.cbСonsonant.UseVisualStyleBackColor = true;
+            // 
+            // cbVowel
+            // 
+            this.cbVowel.AutoSize = true;
+            this.cbVowel.Location = new System.Drawing.Point(323, 124);
+            this.cbVowel.Name = "cbVowel";
+            this.cbVowel.Size = new System.Drawing.Size(90, 22);
+            this.cbVowel.TabIndex = 19;
+            this.cbVowel.Text = "Vowel Up";
+            this.cbVowel.UseVisualStyleBackColor = true;
+            // 
+            // cbCheckLetters
+            // 
+            this.cbCheckLetters.AutoSize = true;
+            this.cbCheckLetters.Location = new System.Drawing.Point(323, 95);
+            this.cbCheckLetters.Name = "cbCheckLetters";
+            this.cbCheckLetters.Size = new System.Drawing.Size(126, 22);
+            this.cbCheckLetters.TabIndex = 18;
+            this.cbCheckLetters.Text = "Check ngraphs";
+            this.cbCheckLetters.UseVisualStyleBackColor = true;
             // 
             // rbFrench
             // 
@@ -273,36 +304,6 @@
             this.inputTxtBox.Size = new System.Drawing.Size(280, 26);
             this.inputTxtBox.TabIndex = 4;
             this.inputTxtBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.InputTxtBox_KeyPress);
-            // 
-            // cbCheckLetters
-            // 
-            this.cbCheckLetters.AutoSize = true;
-            this.cbCheckLetters.Location = new System.Drawing.Point(323, 95);
-            this.cbCheckLetters.Name = "cbCheckLetters";
-            this.cbCheckLetters.Size = new System.Drawing.Size(126, 22);
-            this.cbCheckLetters.TabIndex = 18;
-            this.cbCheckLetters.Text = "Check ngraphs";
-            this.cbCheckLetters.UseVisualStyleBackColor = true;
-            // 
-            // cbVowel
-            // 
-            this.cbVowel.AutoSize = true;
-            this.cbVowel.Location = new System.Drawing.Point(323, 124);
-            this.cbVowel.Name = "cbVowel";
-            this.cbVowel.Size = new System.Drawing.Size(90, 22);
-            this.cbVowel.TabIndex = 19;
-            this.cbVowel.Text = "Vowel Up";
-            this.cbVowel.UseVisualStyleBackColor = true;
-            // 
-            // cbСonsonant
-            // 
-            this.cbСonsonant.AutoSize = true;
-            this.cbСonsonant.Location = new System.Drawing.Point(323, 153);
-            this.cbСonsonant.Name = "cbСonsonant";
-            this.cbСonsonant.Size = new System.Drawing.Size(122, 22);
-            this.cbСonsonant.TabIndex = 20;
-            this.cbСonsonant.Text = "Сonsonant Up";
-            this.cbСonsonant.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

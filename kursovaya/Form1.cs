@@ -120,6 +120,13 @@ namespace kursovaya
             System.IO.File.WriteAllText(filename, outputTxtBox.Text);
             MessageBox.Show("Файл сохранен", "Результат");
         }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2(this, rbEngRus, rbPolRus, rbRusEng, rbRusPol);
+            form2.Parent = this.Parent;
+            form2.Visible = true;
+        }
     }
     
 }

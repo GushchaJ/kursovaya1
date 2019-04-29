@@ -61,7 +61,7 @@ namespace kursovaya
         {
             Dictionary<string, string> temp = new Dictionary<string, string>();
             foreach (var i in dictionary)
-            {
+            { 
                 temp.Add(i.Value, i.Key);
             }
             dictionary = temp;
@@ -99,7 +99,8 @@ namespace kursovaya
                         dictionary.Add(keyvalue[0], keyvalue[1]);
                     }
                 }
-            }            
+                dictionary = dictionary.OrderBy(pair => pair.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
+            }
         }
         private static void GetPolRus(string inputtedText, TextBox outputtedtextBox, Dictionary<string, string> dictionary)
         {
@@ -115,6 +116,7 @@ namespace kursovaya
                         dictionary.Add(keyvalue[0], keyvalue[1]);
                     }
                 }
+                dictionary = dictionary.OrderBy(pair => pair.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
             }
         }
     }
