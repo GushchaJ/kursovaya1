@@ -120,7 +120,9 @@ namespace kursovaya
             {
                 path = @"..\..\polRus.txt";
             }
+            temp = GetDictionary(temp, path, RbEngRus, RbRusEng, RbPolRus, RbRusPol);
             temp = RemovingWord(temp, path, RbEngRus, RbRusEng, RbRusPol, RbPolRus);
+            temp = temp.OrderBy(pair => pair.Key).ToDictionary(pair => pair.Key, pair => pair.Value);
             File.WriteAllLines(path, temp.Select(x => x.Key + "-" + x.Value).ToArray());
             PrintingDict();
         }
@@ -136,7 +138,7 @@ namespace kursovaya
                 keysT.Add(item.Key);
                 valuesT.Add(item.Value);
             }
-            int index = 0;           
+            int index = 0;
             for (int i = 0; i < keysT.Count; i++)
             {
                 if (keysT[i].Equals(str))
@@ -145,6 +147,7 @@ namespace kursovaya
                     keysT.Remove(keysT[i]);
                     valuesT.RemoveAt(index);
                 }
+                
             }
             Dictionary<string, string> newDict = new Dictionary<string, string>();
             if (keysT.Count == valuesT.Count)
