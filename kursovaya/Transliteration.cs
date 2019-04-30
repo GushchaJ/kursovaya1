@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Windows.Forms;
-using System.Drawing;
+﻿using System.Windows.Forms;
 
 namespace kursovaya
 {
@@ -44,19 +37,7 @@ namespace kursovaya
 
             if (rbFrench.Checked)
             {
-                inputtedText = French(inputtedText, rus_up, rus_low, cbCheckLetters, cbVowel, cbСonsonant);
-                if(cbCheckLetters.Checked)
-                {
-
-                }
-                if(cbVowel.Checked)
-                {
-
-                }
-                if(cbСonsonant.Checked)
-                {
-
-                }
+                inputtedText = French(inputtedText, rus_up, rus_low, cbCheckLetters, cbVowel, cbСonsonant);                
             }
             else if(rbGerman.Checked)
             {
@@ -93,7 +74,6 @@ namespace kursovaya
                     if (lat_up[i].Length > rus_up[i].Length | lat_low[i].Length > rus_low[i].Length)
                     {
                         inputtedText = inputtedText.Replace(lat_low[i], lat_up[i]);
-
                     }
                 }                    
             }
