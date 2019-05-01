@@ -7,15 +7,15 @@ namespace kursovaya
 {
     class Translation
     {
-        string InputtedText { get; set; } 
+        string InputtedText { get; set; }
         TextBox OutputtedTextBox { get; set; }
         RadioButton RbEngRus { get; set; }
         RadioButton RbPolRus { get; set; }
         RadioButton RbRusEng { get; set; }
         RadioButton RbRusPol { get; set; }
-
+        MainForm Form { get; set; }
         public Translation(string inputtedText, TextBox outputtedtextBox, RadioButton rbEngRus,
-            RadioButton rbPolRus, RadioButton rbRusEng, RadioButton rbRusPol)
+            RadioButton rbPolRus, RadioButton rbRusEng, RadioButton rbRusPol, MainForm form)
         {
             InputtedText = inputtedText;
             OutputtedTextBox = outputtedtextBox;
@@ -23,6 +23,7 @@ namespace kursovaya
             RbRusEng = rbRusEng;
             RbPolRus = rbPolRus;
             RbRusPol = rbRusPol;
+            Form = form;
 
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
@@ -50,7 +51,8 @@ namespace kursovaya
                 dictionary = Dictionaryreversing(dictionary);
             }
 
-            Translate(inputtedText, outputtedtextBox, dictionary);
+            Translate(inputtedText, outputtedtextBox, dictionary, rbEngRus, 
+                rbPolRus, rbRusEng, rbRusPol, form);
         }
 
         private static Dictionary<string, string> Dictionaryreversing(Dictionary<string, string> dictionary)
@@ -64,9 +66,12 @@ namespace kursovaya
             return dictionary;
         }
 
-        private static void Translate(string inputtedText, TextBox outputtedtextBox, Dictionary<string, string> dictionary)
+        private static void Translate(string inputtedText, TextBox outputtedtextBox, Dictionary<string, string> dictionary, 
+            RadioButton rbEngRus, RadioButton rbPolRus, RadioButton rbRusEng, RadioButton rbRusPol, MainForm form)
         {
+            inputtedText = inputtedText.ToLower();
             string[] inputtedTextDevided = inputtedText.Split(' ', '.', ',', '!', '?', '"', ':', ';');
+            
             List<string> outputtedTextDevided = new List<string>();
 
             for (int i = 0; i < inputtedTextDevided.Length; i++)
@@ -75,6 +80,18 @@ namespace kursovaya
                 {
                     string res = inputtedTextDevided[i];
                     outputtedTextDevided.Add(dictionary[res]);
+                }
+                else
+                {
+                    var result = MessageBox.Show("There's no such word... Would you like" +
+                        " to open the dictionary?", "Warning",
+                          MessageBoxButtons.YesNo,
+                          MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        _DictionaryForm form2 = new _DictionaryForm(form, rbEngRus, rbPolRus, rbRusEng, rbRusPol);
+                        form2.Show();
+                    }
                 }
             }
             string outputtedText = string.Join(" ", outputtedTextDevided.ToArray());

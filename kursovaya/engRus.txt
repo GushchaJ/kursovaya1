@@ -675,6 +675,7 @@ twist-завихрение
 umbrella-зонт
 under-под
 unit-единица
+university-университет
 up-вверх
 value-ценность
 verse-стих

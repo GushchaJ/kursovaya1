@@ -7,7 +7,7 @@ using System.IO;
 
 namespace kursovaya
 {
-    public partial class Form2 : Form
+    public partial class _DictionaryForm : Form
     {
         Form MainForm;
         RadioButton RbEngRus { get; set; }
@@ -16,7 +16,7 @@ namespace kursovaya
         RadioButton RbRusPol { get; set; }
 
 
-        public Form2(Form mainform, RadioButton rbEngRus, RadioButton rbPolRus,
+        public _DictionaryForm(Form mainform, RadioButton rbEngRus, RadioButton rbPolRus,
             RadioButton rbRusEng, RadioButton rbRusPol)
         {
             RbEngRus = rbEngRus;
@@ -29,7 +29,7 @@ namespace kursovaya
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            Form1 mainform = Owner as Form1;
+            MainForm mainform = Owner as MainForm;
             PrintingDict();
         }
 
@@ -81,9 +81,13 @@ namespace kursovaya
             Dictionary<string, string> temp = new Dictionary<string, string>();
             string path = null;
             GetDictionary(temp, path, RbEngRus, RbRusEng, RbPolRus, RbRusPol);
-            if (tbWordsIn.Text != null && tbWordsOu.Text != null)
+            if (tbWordsIn.Text != "" && tbWordsOu.Text != "")
             {
-                temp.Add(tbWordsIn.Text, tbWordsOu.Text);
+                temp.Add(tbWordsIn.Text.ToLower(), tbWordsOu.Text.ToLower());
+            }
+            else
+            {
+                MessageBox.Show("Input the word!", "Warning");
             }
             temp = AddingWord(temp, path, RbEngRus, RbRusEng, RbPolRus, RbRusPol);
         }
@@ -125,7 +129,7 @@ namespace kursovaya
         private Dictionary<string, string> RemovingWord(Dictionary<string, string> temp, string path,
             RadioButton RbEngRus, RadioButton RbRusEng, RadioButton RbPolRus, RadioButton RbRusPol)
         {
-            string str = tbWordsIn.Text;
+            string str = tbWordsIn.Text.ToLower();
             List<string> keysT = new List<string>();
             List<string> valuesT = new List<string>();
 
@@ -154,6 +158,28 @@ namespace kursovaya
                 }
             }
             return newDict;
+        }
+
+        private void RbIwannaAdd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbIwannaAdd.Checked)
+            {
+                btnAddNewWord.Visible = true;
+                tbWordsIn.Visible = true;
+                tbWordsOu.Visible = true;
+                btnRemoveWord.Visible = false;
+            }
+        }
+
+        private void RbIwannaDelete_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbIwannaDelete.Checked)
+            {
+                btnAddNewWord.Visible = false;
+                tbWordsIn.Visible = true;
+                tbWordsOu.Visible = false;
+                btnRemoveWord.Visible = true;
+            }
         }
     }
 }

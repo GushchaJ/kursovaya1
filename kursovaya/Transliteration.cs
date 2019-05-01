@@ -51,10 +51,7 @@ namespace kursovaya
             {
                 inputtedText = Scientific(inputtedText, rus_up, rus_low, cbCheckLetters, cbVowel, cbСonsonant);
             }
-            outputtedtextBox.Text = inputtedText;
-
-            
-            
+            outputtedtextBox.Text = inputtedText;           
         }
         private static string Transliterate(ref string inputtedText, string[] rus_up, string[] rus_low,
             string[] lat_up, string[] lat_low, string[] consonant, string[] vowels, int length, 

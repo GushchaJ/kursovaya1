@@ -1,6 +1,6 @@
 ﻿namespace kursovaya
 {
-    partial class Form2
+    partial class _DictionaryForm
     {
         /// <summary>
         /// Required designer variable.
@@ -36,12 +36,15 @@
             this.btnRemoveWord = new System.Windows.Forms.Button();
             this.tbWordsIn = new System.Windows.Forms.TextBox();
             this.tbWordsOu = new System.Windows.Forms.TextBox();
+            this.rbIwannaAdd = new System.Windows.Forms.RadioButton();
+            this.rbIwannaDelete = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(43, 33);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(245, 139);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
@@ -50,6 +53,7 @@
             // 
             this.richTextBox2.Location = new System.Drawing.Point(321, 33);
             this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ReadOnly = true;
             this.richTextBox2.Size = new System.Drawing.Size(245, 139);
             this.richTextBox2.TabIndex = 1;
             this.richTextBox2.Text = "";
@@ -74,43 +78,73 @@
             // 
             // btnAddNewWord
             // 
-            this.btnAddNewWord.Location = new System.Drawing.Point(43, 185);
+            this.btnAddNewWord.Location = new System.Drawing.Point(43, 199);
             this.btnAddNewWord.Name = "btnAddNewWord";
             this.btnAddNewWord.Size = new System.Drawing.Size(96, 23);
             this.btnAddNewWord.TabIndex = 4;
             this.btnAddNewWord.Text = "Add word";
             this.btnAddNewWord.UseVisualStyleBackColor = true;
+            this.btnAddNewWord.Visible = false;
             this.btnAddNewWord.Click += new System.EventHandler(this.BtnAddNewWord_Click);
             // 
             // btnRemoveWord
             // 
-            this.btnRemoveWord.Location = new System.Drawing.Point(452, 185);
+            this.btnRemoveWord.Location = new System.Drawing.Point(452, 199);
             this.btnRemoveWord.Name = "btnRemoveWord";
             this.btnRemoveWord.Size = new System.Drawing.Size(114, 23);
             this.btnRemoveWord.TabIndex = 5;
             this.btnRemoveWord.Text = "Remove word";
             this.btnRemoveWord.UseVisualStyleBackColor = true;
+            this.btnRemoveWord.Visible = false;
             this.btnRemoveWord.Click += new System.EventHandler(this.BtnRemoveWord_Click);
             // 
             // tbWordsIn
             // 
-            this.tbWordsIn.Location = new System.Drawing.Point(43, 219);
+            this.tbWordsIn.Location = new System.Drawing.Point(43, 233);
             this.tbWordsIn.Name = "tbWordsIn";
             this.tbWordsIn.Size = new System.Drawing.Size(245, 22);
             this.tbWordsIn.TabIndex = 7;
+            this.tbWordsIn.Visible = false;
             // 
             // tbWordsOu
             // 
-            this.tbWordsOu.Location = new System.Drawing.Point(321, 219);
+            this.tbWordsOu.Location = new System.Drawing.Point(321, 233);
             this.tbWordsOu.Name = "tbWordsOu";
             this.tbWordsOu.Size = new System.Drawing.Size(245, 22);
             this.tbWordsOu.TabIndex = 8;
+            this.tbWordsOu.Visible = false;
             // 
-            // Form2
+            // rbIwannaAdd
+            // 
+            this.rbIwannaAdd.AutoSize = true;
+            this.rbIwannaAdd.Location = new System.Drawing.Point(178, 201);
+            this.rbIwannaAdd.Name = "rbIwannaAdd";
+            this.rbIwannaAdd.Size = new System.Drawing.Size(88, 21);
+            this.rbIwannaAdd.TabIndex = 9;
+            this.rbIwannaAdd.TabStop = true;
+            this.rbIwannaAdd.Text = "Add word";
+            this.rbIwannaAdd.UseVisualStyleBackColor = true;
+            this.rbIwannaAdd.CheckedChanged += new System.EventHandler(this.RbIwannaAdd_CheckedChanged);
+            // 
+            // rbIwannaDelete
+            // 
+            this.rbIwannaDelete.AutoSize = true;
+            this.rbIwannaDelete.Location = new System.Drawing.Point(321, 201);
+            this.rbIwannaDelete.Name = "rbIwannaDelete";
+            this.rbIwannaDelete.Size = new System.Drawing.Size(108, 21);
+            this.rbIwannaDelete.TabIndex = 10;
+            this.rbIwannaDelete.TabStop = true;
+            this.rbIwannaDelete.Text = "Delete Word";
+            this.rbIwannaDelete.UseVisualStyleBackColor = true;
+            this.rbIwannaDelete.CheckedChanged += new System.EventHandler(this.RbIwannaDelete_CheckedChanged);
+            // 
+            // _DictionaryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 267);
+            this.Controls.Add(this.rbIwannaDelete);
+            this.Controls.Add(this.rbIwannaAdd);
             this.Controls.Add(this.tbWordsOu);
             this.Controls.Add(this.tbWordsIn);
             this.Controls.Add(this.btnRemoveWord);
@@ -119,8 +153,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.richTextBox1);
-            this.Name = "Form2";
-            this.Text = " ";
+            this.Name = "_DictionaryForm";
+            this.Text = " Dictionary";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -137,5 +171,7 @@
         private System.Windows.Forms.Button btnRemoveWord;
         private System.Windows.Forms.TextBox tbWordsIn;
         private System.Windows.Forms.TextBox tbWordsOu;
+        private System.Windows.Forms.RadioButton rbIwannaAdd;
+        private System.Windows.Forms.RadioButton rbIwannaDelete;
     }
 }
