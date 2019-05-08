@@ -36,8 +36,6 @@
             this.rbTransliterate = new System.Windows.Forms.RadioButton();
             this.gbSelector = new System.Windows.Forms.GroupBox();
             this.gbEditor = new System.Windows.Forms.GroupBox();
-            this.cbСonsonant = new System.Windows.Forms.CheckBox();
-            this.cbVowel = new System.Windows.Forms.CheckBox();
             this.cbCheckLetters = new System.Windows.Forms.CheckBox();
             this.rbScientific = new System.Windows.Forms.RadioButton();
             this.rbRusPol = new System.Windows.Forms.RadioButton();
@@ -136,8 +134,6 @@
             // 
             this.gbEditor.Controls.Add(this.btnSave);
             this.gbEditor.Controls.Add(this.btnDict);
-            this.gbEditor.Controls.Add(this.cbСonsonant);
-            this.gbEditor.Controls.Add(this.cbVowel);
             this.gbEditor.Controls.Add(this.cbCheckLetters);
             this.gbEditor.Controls.Add(this.rbScientific);
             this.gbEditor.Controls.Add(this.rbRusPol);
@@ -160,32 +156,10 @@
             this.gbEditor.TabStop = false;
             this.gbEditor.Text = "Editor";
             // 
-            // cbСonsonant
-            // 
-            this.cbСonsonant.AutoSize = true;
-            this.cbСonsonant.Location = new System.Drawing.Point(323, 153);
-            this.cbСonsonant.Name = "cbСonsonant";
-            this.cbСonsonant.Size = new System.Drawing.Size(122, 22);
-            this.cbСonsonant.TabIndex = 20;
-            this.cbСonsonant.Text = "Сonsonant Up";
-            this.cbСonsonant.UseVisualStyleBackColor = true;
-            this.cbСonsonant.Visible = false;
-            // 
-            // cbVowel
-            // 
-            this.cbVowel.AutoSize = true;
-            this.cbVowel.Location = new System.Drawing.Point(323, 124);
-            this.cbVowel.Name = "cbVowel";
-            this.cbVowel.Size = new System.Drawing.Size(90, 22);
-            this.cbVowel.TabIndex = 19;
-            this.cbVowel.Text = "Vowel Up";
-            this.cbVowel.UseVisualStyleBackColor = true;
-            this.cbVowel.Visible = false;
-            // 
             // cbCheckLetters
             // 
             this.cbCheckLetters.AutoSize = true;
-            this.cbCheckLetters.Location = new System.Drawing.Point(323, 95);
+            this.cbCheckLetters.Location = new System.Drawing.Point(323, 106);
             this.cbCheckLetters.Name = "cbCheckLetters";
             this.cbCheckLetters.Size = new System.Drawing.Size(126, 22);
             this.cbCheckLetters.TabIndex = 18;
@@ -341,7 +315,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(258, 92);
+            this.ClientSize = new System.Drawing.Size(261, 88);
             this.Controls.Add(this.gbSelector);
             this.Controls.Add(this.gbEditor);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -349,8 +323,6 @@
             this.Name = "MainForm";
             this.Text = "Translator v2.0";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.Leave += new System.EventHandler(this.Form1_Load);
             this.gbSelector.ResumeLayout(false);
             this.gbSelector.PerformLayout();
             this.gbEditor.ResumeLayout(false);
@@ -380,8 +352,6 @@
         private System.Windows.Forms.RadioButton rbGerman;
         private System.Windows.Forms.RadioButton rbScientific;
         private System.Windows.Forms.CheckBox cbCheckLetters;
-        private System.Windows.Forms.CheckBox cbСonsonant;
-        private System.Windows.Forms.CheckBox cbVowel;
         private System.Windows.Forms.Label label1;
     }
 }

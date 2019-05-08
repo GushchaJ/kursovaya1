@@ -9,13 +9,7 @@ namespace kursovaya
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
+        } 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             var result = MessageBox.Show("Are you sure you want to exit?", "Warning",
@@ -24,7 +18,6 @@ namespace kursovaya
             if (result != DialogResult.Yes)
                 e.Cancel = true;
         }
-
         OpenFileDialog openFileDialog = new OpenFileDialog();
         private void BtnOpen_Click(object sender, EventArgs e)
         {
@@ -61,7 +54,7 @@ namespace kursovaya
             else if (rbTransliterate.Checked)
             {
                 Transliteration transliteration = new Transliteration(inputTxtBox.Text, outputTxtBox, rbFrench, rbGerman, rbISO9,
-                    rbScientific, cbCheckLetters, cbVowel, cbСonsonant);
+                    rbScientific, cbCheckLetters);
             }            
         }
 
@@ -98,8 +91,6 @@ namespace kursovaya
                 rbGerman.Visible = true;
                 rbScientific.Visible = true;
                 cbCheckLetters.Visible = true;
-                cbVowel.Visible = true;
-                cbСonsonant.Visible = true;
                 label1.Visible = false;                
             }
             else
@@ -109,8 +100,6 @@ namespace kursovaya
                 rbGerman.Visible = false;
                 rbScientific.Visible = false;
                 cbCheckLetters.Visible = false;
-                cbVowel.Visible = false;
-                cbСonsonant.Visible = false;
             }   
         }
 
@@ -129,7 +118,7 @@ namespace kursovaya
 
         private void BtnDict_Click(object sender, EventArgs e)
         {
-            _DictionaryForm form2 = new _DictionaryForm(this, rbEngRus, rbPolRus, rbRusEng, rbRusPol)
+            _DictionaryForm form2 = new _DictionaryForm(rbEngRus, rbPolRus, rbRusEng, rbRusPol)
             {
                 Parent = this.Parent,
                 Visible = true

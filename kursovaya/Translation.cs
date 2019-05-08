@@ -89,7 +89,7 @@ namespace kursovaya
                           MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        _DictionaryForm form2 = new _DictionaryForm(form, rbEngRus, rbPolRus, rbRusEng, rbRusPol);
+                        _DictionaryForm form2 = new _DictionaryForm( rbEngRus, rbPolRus, rbRusEng, rbRusPol);
                         form2.Show();
                     }
                 }

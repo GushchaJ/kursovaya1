@@ -9,21 +9,19 @@ namespace kursovaya
 {
     public partial class _DictionaryForm : Form
     {
-        Form MainForm;
-        RadioButton RbEngRus { get; set; }
-        RadioButton RbPolRus { get; set; }
-        RadioButton RbRusEng { get; set; }
-        RadioButton RbRusPol { get; set; }
+         RadioButton RbEngRus { get; set; }
+         RadioButton RbPolRus { get; set; }
+         RadioButton RbRusEng { get; set; }
+         RadioButton RbRusPol { get; set; }
 
 
-        public _DictionaryForm(Form mainform, RadioButton rbEngRus, RadioButton rbPolRus,
+        public _DictionaryForm( RadioButton rbEngRus, RadioButton rbPolRus,
             RadioButton rbRusEng, RadioButton rbRusPol)
         {
             RbEngRus = rbEngRus;
             RbPolRus = rbPolRus;
             RbRusEng = rbRusEng;
             RbRusPol = rbRusPol;
-            MainForm = mainform;
             InitializeComponent();
         }
 
