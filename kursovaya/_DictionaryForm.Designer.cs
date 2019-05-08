@@ -42,18 +42,21 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(43, 33);
+            this.richTextBox1.Location = new System.Drawing.Point(43, 29);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.ShowSelectionMargin = true;
             this.richTextBox1.Size = new System.Drawing.Size(245, 139);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            this.richTextBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RichTextBox1_MouseClick);
             // 
             // richTextBox2
             // 
             this.richTextBox2.Location = new System.Drawing.Point(321, 33);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
+            this.richTextBox2.ShowSelectionMargin = true;
             this.richTextBox2.Size = new System.Drawing.Size(245, 139);
             this.richTextBox2.TabIndex = 1;
             this.richTextBox2.Text = "";

@@ -85,7 +85,7 @@ namespace kursovaya
                     }
                     break;
                 }
-                if (Regex.Match(inputtedText, @"^[A-Za-z ']+$").Success)
+                if (Regex.Match(inputtedText, @"^[A-Z 'ŜČŠЁŽÈÛÂÏ]+$", RegexOptions.IgnoreCase).Success)
                 {
                     for (int j = 0; j < length; j++)
                     {

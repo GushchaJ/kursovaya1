@@ -127,7 +127,9 @@ namespace kursovaya
         private Dictionary<string, string> RemovingWord(Dictionary<string, string> temp, string path,
             RadioButton RbEngRus, RadioButton RbRusEng, RadioButton RbPolRus, RadioButton RbRusPol)
         {
-            string str = tbWordsIn.Text.ToLower();
+            int firstcharindex = richTextBox1.GetFirstCharIndexOfCurrentLine();//индекс начала слова
+            int currentline = richTextBox1.GetLineFromCharIndex(firstcharindex);//индекс строки
+            string currentlinetext = richTextBox1.Lines[currentline];
             List<string> keysT = new List<string>();
             List<string> valuesT = new List<string>();
 
@@ -139,7 +141,7 @@ namespace kursovaya
             int index = 0;
             for (int i = 0; i < keysT.Count; i++)
             {
-                if (keysT[i].Equals(str))
+                if (keysT[i].Equals(currentlinetext))
                 {
                     index = i;
                     keysT.Remove(keysT[i]);
@@ -178,6 +180,21 @@ namespace kursovaya
                 tbWordsOu.Visible = false;
                 btnRemoveWord.Visible = true;
             }
+        }
+
+        private void RichTextBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            //выделяет всю строку в richtextbox1
+            int firstcharindex = richTextBox1.GetFirstCharIndexOfCurrentLine();//индекс начала слова
+            int currentline = richTextBox1.GetLineFromCharIndex(firstcharindex);//индекс строки
+            string currentlinetext = richTextBox1.Lines[currentline];
+            richTextBox1.Select(firstcharindex, currentlinetext.Length + 1);
+
+            richTextBox2.Focus();
+
+            int _firstcharindex = richTextBox2.GetFirstCharIndexFromLine(currentline);//индекс начала слова
+            string _currentlinetext = richTextBox2.Lines[currentline];
+            richTextBox2.Select(_firstcharindex, _currentlinetext.Length + 1);                      
         }
     }
 }
