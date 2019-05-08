@@ -12,19 +12,23 @@ namespace kursovaya
         RadioButton RbGerman { get; set; }
         RadioButton RbIso9 { get; set; }
         RadioButton RbScientific { get; set; }
+        RadioButton RbOwn { get; set; }
         CheckBox CbCheckLetters { get; set; }
+        string [] OwnAlph { get; set; }
 
         public Transliteration(string inputtedText, TextBox outputtedtextBox, RadioButton rbFrench,
-            RadioButton rbGerman, RadioButton rbISO9, RadioButton rbScientific, CheckBox cbCheckLetters)             
+            RadioButton rbGerman, RadioButton rbISO9, RadioButton rbScientific, CheckBox cbCheckLetters,
+            string [] ownAlph, RadioButton rbOwn)             
         {
             InputtedText = inputtedText;
             OutputtedTextBox = outputtedtextBox;
-
+            OwnAlph = ownAlph;
             RbFrench = rbFrench;
             RbScientific = rbScientific;
             RbGerman = rbGerman;
             RbIso9 = rbISO9;
             CbCheckLetters = cbCheckLetters;
+            RbOwn = rbOwn;
 
             string[] rus = { "Щ", "Ч", "Ш", "Ё", "Ж", "Ц", "Ъ", "Ы", "Э", "Ю", "Я", "У", "Х", "А", "Б",
                 "В", "Г", "Д", "Е", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т",  "Ф", "Ь" };
@@ -49,6 +53,11 @@ namespace kursovaya
                 else if (rbScientific.Checked)
                 {
                     inputtedText = Scientific(inputtedText, rus, cbCheckLetters);
+                    break;
+                }
+                else if (rbOwn.Checked)
+                {
+                    inputtedText = Own(inputtedText, rus, ownAlph, cbCheckLetters);
                     break;
                 }
             }
@@ -107,6 +116,13 @@ namespace kursovaya
                 }
             }
             return inputtedText;
+        }
+
+        private static string Own(string inputtedText, string[] rus, string[] ownAlph,
+            CheckBox cbCheckLetters)
+        {
+            int length = ownAlph.Length;
+            return Transliterate(ref inputtedText, rus, ownAlph, length, cbCheckLetters);
         }
         private static string Iso9(string inputtedText, string[] rus, 
             CheckBox cbCheckLetters)

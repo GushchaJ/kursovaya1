@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -46,7 +47,10 @@ namespace kursovaya
             outputTxtBox.Text = null;
             MainForm form = new MainForm();
 
-            if(rbTranslate.Checked)
+            string[] ownAlph = null;
+            ownAlph = AddingOwnAlphabet(ownAlph);
+
+            if (rbTranslate.Checked)
             {
                 Translation translation = new Translation(inputTxtBox.Text, outputTxtBox,
                     rbEngRus, rbPolRus, rbRusEng, rbRusPol, form);
@@ -54,7 +58,7 @@ namespace kursovaya
             else if (rbTransliterate.Checked)
             {
                 Transliteration transliteration = new Transliteration(inputTxtBox.Text, outputTxtBox, rbFrench, rbGerman, rbISO9,
-                    rbScientific, cbCheckLetters);
+                    rbScientific,  cbCheckLetters, ownAlph, rbOwn);
             }            
         }
 
@@ -90,6 +94,7 @@ namespace kursovaya
                 rbFrench.Visible = true;
                 rbGerman.Visible = true;
                 rbScientific.Visible = true;
+                rbOwn.Visible = true;
                 cbCheckLetters.Visible = true;
                 label1.Visible = false;                
             }
@@ -99,6 +104,7 @@ namespace kursovaya
                 rbFrench.Visible = false;
                 rbGerman.Visible = false;
                 rbScientific.Visible = false;
+                rbOwn.Visible = false;
                 cbCheckLetters.Visible = false;
             }   
         }
@@ -213,6 +219,33 @@ namespace kursovaya
             }
         }
 
-        
+        private void RbOwn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbOwn.Checked)
+            {
+                Width = 666;
+                Height = 652;
+                Visibility();
+            }
+            string[] ownAlph = null;
+            ownAlph = AddingOwnAlphabet(ownAlph);
+
+        }
+
+        private string[] AddingOwnAlphabet(string[] ownAlph)
+        {
+            List<string> own = new List<string>();
+
+            own.Add(tbSch.Text); own.Add(tbCch.Text); own.Add(tbSh.Text); own.Add(tbJo.Text); own.Add(tbZh.Text);
+            own.Add(tbTs.Text); own.Add(tbTv.Text); own.Add(tbY.Text); own.Add(tbJe.Text); own.Add(tbJu.Text);
+            own.Add(tbJa.Text); own.Add(tbU.Text); own.Add(tbCh.Text); own.Add(tbA.Text); own.Add(tbB.Text);
+            own.Add(tbV.Text); own.Add(tbG.Text); own.Add(tbD.Text); own.Add(tbE.Text); own.Add(tbZ.Text);
+            own.Add(tbI.Text); own.Add(tbJ.Text); own.Add(tbK.Text); own.Add(tbL.Text); own.Add(tbM.Text);
+            own.Add(tbN.Text); own.Add(tbO.Text); own.Add(tbP.Text); own.Add(tbR.Text); own.Add(tbC.Text);
+            own.Add(tbT.Text); own.Add(tbF.Text); own.Add(TbMia.Text);
+
+            ownAlph = own.ToArray();
+            return ownAlph;
+        }
     }    
 }
