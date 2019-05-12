@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.IO;
 
 namespace kursovaya
 {
@@ -18,7 +19,7 @@ namespace kursovaya
 
         public Transliteration(string inputtedText, TextBox outputtedtextBox, RadioButton rbFrench,
             RadioButton rbGerman, RadioButton rbISO9, RadioButton rbScientific, CheckBox cbCheckLetters,
-            string [] ownAlph, RadioButton rbOwn)             
+            string [] ownAlph, RadioButton rbOwn)
         {
             InputtedText = inputtedText;
             OutputtedTextBox = outputtedtextBox;
@@ -30,29 +31,44 @@ namespace kursovaya
             CbCheckLetters = cbCheckLetters;
             RbOwn = rbOwn;
 
-            string[] rus = { "Щ", "Ч", "Ш", "Ё", "Ж", "Ц", "Ъ", "Ы", "Э", "Ю", "Я", "У", "Х", "А", "Б",
-                "В", "Г", "Д", "Е", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т",  "Ф", "Ь" };
+            string[] rus = null;
+            List<string> temp = new List<string>();
+            string path = @"..\..\trRu.txt";
+            rus = ReadingFromFile(temp, path);
+            inputtedText = Preparing2Translit(inputtedText, rbFrench, rbGerman, rbISO9, 
+                rbScientific, cbCheckLetters, ownAlph, rbOwn, rus);
 
+            outputtedtextBox.Text = inputtedText;
+        }
+
+        private static string Preparing2Translit(string inputtedText, RadioButton rbFrench, RadioButton rbGerman, 
+            RadioButton rbISO9, RadioButton rbScientific, CheckBox cbCheckLetters, string[] ownAlph,
+            RadioButton rbOwn, string[] rus)
+        {
             for (int i = 0; i < inputtedText.Length; i++)
             {
                 if (rbFrench.Checked)
                 {
-                    inputtedText = French(inputtedText, rus, cbCheckLetters);
+                    inputtedText = French(inputtedText, rus, cbCheckLetters,
+                        rbFrench, rbGerman, rbISO9, rbScientific);
                     break;
                 }
                 else if (rbGerman.Checked)
                 {
-                    inputtedText = German(inputtedText, rus, cbCheckLetters);
+                    inputtedText = German(inputtedText, rus, cbCheckLetters,
+                        rbFrench, rbGerman, rbISO9, rbScientific);
                     break;
                 }
                 else if (rbISO9.Checked)
                 {
-                    inputtedText = Iso9(inputtedText, rus, cbCheckLetters);
+                    inputtedText = Iso9(inputtedText, rus, cbCheckLetters,
+                        rbFrench, rbGerman, rbISO9, rbScientific);
                     break;
                 }
                 else if (rbScientific.Checked)
                 {
-                    inputtedText = Scientific(inputtedText, rus, cbCheckLetters);
+                    inputtedText = Scientific(inputtedText, rus, cbCheckLetters, 
+                        rbFrench, rbGerman, rbISO9, rbScientific);
                     break;
                 }
                 else if (rbOwn.Checked)
@@ -61,9 +77,62 @@ namespace kursovaya
                     break;
                 }
             }
-            
-            outputtedtextBox.Text = inputtedText;           
+
+            return inputtedText;
         }
+
+        private static string[] GettingAlphabet(RadioButton rbFrench, RadioButton rbGerman,
+            RadioButton rbISO9, RadioButton rbScientific)
+        {
+            string[] alph;
+            List<string> temp = new List<string>();
+            string path = "";
+            path = GetPath(rbFrench, rbGerman, rbISO9, rbScientific, path);
+            alph = ReadingFromFile(temp, path);
+            return alph;
+        }
+
+        private static string GetPath(RadioButton rbFrench, RadioButton rbGerman, RadioButton rbISO9, 
+            RadioButton rbScientific, string path)
+        {
+            if (rbFrench.Checked)
+            {
+                path = @"..\..\trFr.txt";
+            }
+            if (rbGerman.Checked)
+            {
+                path = @"..\..\trGer.txt";
+            }
+            if (rbISO9.Checked)
+            {
+                path = @"..\..\trIso.txt";
+            }
+            if (rbScientific.Checked)
+            {
+                path = @"..\..\trSci.txt";
+            }
+            return path;
+        }
+
+        private static string[] ReadingFromFile(List<string> temp, string path)
+        {
+            string[] alph;
+            using (StreamReader sr = new StreamReader(path))
+            {
+                string _line;
+                while ((_line = sr.ReadLine()) != null)
+                {
+                    string[] temp1 = _line.Split(',');
+                    foreach (string item in temp1)
+                    {
+                        temp.Add(item);
+                    }
+                }
+            }
+            alph = temp.ToArray();
+            return alph;
+        }
+
         private static string Transliterate(ref string inputtedText, string[] rus,
             string[] lat, int length, CheckBox cbCheckLetters)
         {
@@ -74,7 +143,7 @@ namespace kursovaya
             }
             for (int i = 0; i < inputtedText.Length; i++)
             {
-                if (Regex.Match(inputtedText, @"^[А-Яа-я ']+$").Success)
+                if (Regex.Match(inputtedText, @"^[А-Яа-яёЁ ']+$").Success)
                 {
                     for (int j = 0; j < length; j++)
                     {
@@ -125,47 +194,35 @@ namespace kursovaya
             return Transliterate(ref inputtedText, rus, ownAlph, length, cbCheckLetters);
         }
         private static string Iso9(string inputtedText, string[] rus, 
-            CheckBox cbCheckLetters)
+            CheckBox cbCheckLetters, RadioButton rbFrench, RadioButton rbGerman, RadioButton rbISO9,
+            RadioButton rbScientific)
         {
-            string[] lat = {"SHH", "CH", "SH", "YO", "ZH", "CZ",  "''", "Y'", "E'", "YU", "YA", "U", "X",
-                "A", "B", "V", "G", "D", "E", "Z", "I", "J", "K", "L", "M", "N", "O", "P", "R",
-                "S", "T", "F",  "'"};
-
-            
-
+            string[] lat = GettingAlphabet(rbFrench, rbGerman, rbISO9, rbScientific);
             int length = lat.Length;
             return Transliterate(ref inputtedText, rus, lat, length, cbCheckLetters);
         }
         private static string Scientific(string inputtedText, string[] rus,
-            CheckBox cbCheckLetters)
+            CheckBox cbCheckLetters, RadioButton rbFrench, RadioButton rbGerman, RadioButton rbISO9,
+            RadioButton rbScientific)
         {
-            string[] lat = { "Ŝ","Č", "Š", "Ё", "Ž", "C", "''", "Y", "È", "Û", "Â","U","H",
-                "A", "B", "V", "G", "D", "E", "Z", "I", "J", "K", "L",
-                "M", "N", "O", "P", "R", "S", "T",  "F",  "'"  };            
-
+            string[] lat = GettingAlphabet(rbFrench, rbGerman, rbISO9, rbScientific);
             int length = lat.Length;
             return Transliterate(ref inputtedText, rus, lat, length, cbCheckLetters);
         }
         private static string German(string inputtedText, string[] rus,
-            CheckBox cbCheckLetters)
+            CheckBox cbCheckLetters, RadioButton rbFrench, RadioButton rbGerman, RadioButton rbISO9,
+            RadioButton rbScientific)
         {
-            string[] lat = { "SCHTSCH", "TSCH", "SCH", "JO", "SCH", "Z",  "''",  "Y",
-                "E", "JU", "JA", "U", "CH", "A", "B", "W", "G", "D", "E", "S", "I", "J", "K", "L", "M",
-                "N", "O", "P", "R", "S", "T",  "F",  "'" };
-
+            string[] lat = GettingAlphabet(rbFrench, rbGerman, rbISO9, rbScientific);
             int length = lat.Length;
-            
             return Transliterate(ref inputtedText, rus, lat, length, cbCheckLetters);
         }
          private static string French(string inputtedText, string[] rus,
-            CheckBox cbCheckLetters)
+            CheckBox cbCheckLetters, RadioButton rbFrench, RadioButton rbGerman, RadioButton rbISO9,
+            RadioButton rbScientific)
         {
-             string[] lat = {"CHTCH","TCH", "CH", "IO", "J", "TS",  "''", "Y", "E", "ÏOU", "ÏA","OU","KX",
-                "A", "B", "V", "G", "D", "E", "Z", "I", "Ï", "K", "L", "M",  
-                "N", "O", "P", "R", "S", "T","F", "'"};            
-
+            string[] lat = GettingAlphabet(rbFrench, rbGerman, rbISO9, rbScientific);
             int length = lat.Length;
-            
             return Transliterate(ref inputtedText, rus, lat, length, cbCheckLetters);
         }        
     }

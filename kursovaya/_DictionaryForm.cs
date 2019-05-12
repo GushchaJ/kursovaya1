@@ -182,7 +182,7 @@ namespace kursovaya
             }
         }
 
-        private void RichTextBox1_MouseClick(object sender, MouseEventArgs e)
+        private void RichTextBox1_MouseClick(object sender, MouseEventArgs e) 
         {
             //выделяет всю строку в richtextbox1
             int firstcharindex = richTextBox1.GetFirstCharIndexOfCurrentLine();//индекс начала слова

@@ -67,7 +67,7 @@ namespace kursovaya
             if (rbTranslate.Checked)
             {
                 this.Width = 666;
-                this.Height = 198;
+                this.Height = 195;
                 rbEngRus.Visible = true;
                 rbPolRus.Visible = true;
                 rbRusEng.Visible = true;
@@ -89,7 +89,7 @@ namespace kursovaya
             if (rbTransliterate.Checked)
             {
                 this.Width = 666;
-                this.Height = 198;
+                this.Height = 195;
                 rbISO9.Visible = true;
                 rbFrench.Visible = true;
                 rbGerman.Visible = true;
@@ -143,7 +143,7 @@ namespace kursovaya
         private void ChangeSize()
         {
             Width = 666;
-            Height = 340;
+            Height = 325;
         }
 
         private void Visibility()
@@ -224,28 +224,35 @@ namespace kursovaya
             if (rbOwn.Checked)
             {
                 Width = 666;
-                Height = 652;
+                Height = 671;
                 Visibility();
             }
             string[] ownAlph = null;
             ownAlph = AddingOwnAlphabet(ownAlph);
-
         }
 
         private string[] AddingOwnAlphabet(string[] ownAlph)
         {
             List<string> own = new List<string>();
-
-            own.Add(tbSch.Text); own.Add(tbCch.Text); own.Add(tbSh.Text); own.Add(tbJo.Text); own.Add(tbZh.Text);
-            own.Add(tbTs.Text); own.Add(tbTv.Text); own.Add(tbY.Text); own.Add(tbJe.Text); own.Add(tbJu.Text);
-            own.Add(tbJa.Text); own.Add(tbU.Text); own.Add(tbCh.Text); own.Add(tbA.Text); own.Add(tbB.Text);
-            own.Add(tbV.Text); own.Add(tbG.Text); own.Add(tbD.Text); own.Add(tbE.Text); own.Add(tbZ.Text);
-            own.Add(tbI.Text); own.Add(tbJ.Text); own.Add(tbK.Text); own.Add(tbL.Text); own.Add(tbM.Text);
-            own.Add(tbN.Text); own.Add(tbO.Text); own.Add(tbP.Text); own.Add(tbR.Text); own.Add(tbC.Text);
+            own.Add(tbSch.Text); own.Add(tbCch.Text); own.Add(tbSh.Text);
+            own.Add(tbJo.Text); own.Add(tbZh.Text); own.Add(tbTs.Text);
+            own.Add(tbTv.Text); own.Add(tbY.Text); own.Add(tbJe.Text);
+            own.Add(tbJu.Text); own.Add(tbJa.Text); own.Add(tbU.Text);
+            own.Add(tbCh.Text); own.Add(tbA.Text); own.Add(tbB.Text);
+            own.Add(tbV.Text); own.Add(tbG.Text); own.Add(tbD.Text); own.Add(tbE.Text);
+            own.Add(tbZ.Text); own.Add(tbI.Text); own.Add(tbJ.Text);
+            own.Add(tbK.Text); own.Add(tbL.Text); own.Add(tbM.Text); own.Add(tbN.Text);
+            own.Add(tbO.Text); own.Add(tbP.Text); own.Add(tbR.Text); own.Add(tbC.Text);
             own.Add(tbT.Text); own.Add(tbF.Text); own.Add(TbMia.Text);
-
+                                          
             ownAlph = own.ToArray();
+            for (int i = 0; i < ownAlph.Length; i++)
+            {
+                ownAlph[i] = ownAlph[i].ToUpper();
+            }
             return ownAlph;
         }
+
+        
     }    
 }
