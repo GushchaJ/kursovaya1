@@ -173,7 +173,6 @@
             this.rbTranslate.Name = "rbTranslate";
             this.rbTranslate.Size = new System.Drawing.Size(90, 22);
             this.rbTranslate.TabIndex = 1;
-            this.rbTranslate.TabStop = true;
             this.rbTranslate.Text = "Translate";
             this.rbTranslate.UseVisualStyleBackColor = true;
             this.rbTranslate.CheckedChanged += new System.EventHandler(this.RbTranslate_CheckedChanged);
@@ -185,7 +184,6 @@
             this.rbTransliterate.Name = "rbTransliterate";
             this.rbTransliterate.Size = new System.Drawing.Size(110, 22);
             this.rbTransliterate.TabIndex = 2;
-            this.rbTransliterate.TabStop = true;
             this.rbTransliterate.Text = "Transliterate";
             this.rbTransliterate.UseVisualStyleBackColor = true;
             this.rbTransliterate.CheckedChanged += new System.EventHandler(this.RbTransliterate_CheckedChanged);
@@ -258,7 +256,6 @@
             this.rbRusEng.Name = "rbRusEng";
             this.rbRusEng.Size = new System.Drawing.Size(93, 22);
             this.rbRusEng.TabIndex = 6;
-            this.rbRusEng.TabStop = true;
             this.rbRusEng.Text = "Rus->Eng";
             this.rbRusEng.UseVisualStyleBackColor = true;
             this.rbRusEng.Visible = false;
@@ -279,6 +276,7 @@
             // 
             this.outputTxtBox.Location = new System.Drawing.Point(323, 62);
             this.outputTxtBox.Name = "outputTxtBox";
+            this.outputTxtBox.ReadOnly = true;
             this.outputTxtBox.Size = new System.Drawing.Size(269, 26);
             this.outputTxtBox.TabIndex = 13;
             this.outputTxtBox.Text = "Output";
@@ -301,7 +299,6 @@
             this.rbISO9.Name = "rbISO9";
             this.rbISO9.Size = new System.Drawing.Size(104, 22);
             this.rbISO9.TabIndex = 4;
-            this.rbISO9.TabStop = true;
             this.rbISO9.Text = "ISO 9:1995";
             this.rbISO9.UseVisualStyleBackColor = true;
             this.rbISO9.Visible = false;
@@ -314,7 +311,6 @@
             this.rbRusPol.Name = "rbRusPol";
             this.rbRusPol.Size = new System.Drawing.Size(87, 22);
             this.rbRusPol.TabIndex = 10;
-            this.rbRusPol.TabStop = true;
             this.rbRusPol.Text = "Rus->Pol";
             this.rbRusPol.UseVisualStyleBackColor = true;
             this.rbRusPol.Visible = false;
@@ -327,7 +323,6 @@
             this.rbEngRus.Name = "rbEngRus";
             this.rbEngRus.Size = new System.Drawing.Size(93, 22);
             this.rbEngRus.TabIndex = 3;
-            this.rbEngRus.TabStop = true;
             this.rbEngRus.Text = "Eng->Rus";
             this.rbEngRus.UseVisualStyleBackColor = true;
             this.rbEngRus.Visible = false;
@@ -340,7 +335,6 @@
             this.rbScientific.Name = "rbScientific";
             this.rbScientific.Size = new System.Drawing.Size(83, 22);
             this.rbScientific.TabIndex = 5;
-            this.rbScientific.TabStop = true;
             this.rbScientific.Text = "Scientific";
             this.rbScientific.UseVisualStyleBackColor = true;
             this.rbScientific.Visible = false;
@@ -362,7 +356,6 @@
             this.rbFrench.Name = "rbFrench";
             this.rbFrench.Size = new System.Drawing.Size(139, 22);
             this.rbFrench.TabIndex = 7;
-            this.rbFrench.TabStop = true;
             this.rbFrench.Text = "Based on French";
             this.rbFrench.UseVisualStyleBackColor = true;
             this.rbFrench.Visible = false;
@@ -375,7 +368,6 @@
             this.rbPolRus.Name = "rbPolRus";
             this.rbPolRus.Size = new System.Drawing.Size(87, 22);
             this.rbPolRus.TabIndex = 8;
-            this.rbPolRus.TabStop = true;
             this.rbPolRus.Text = "Pol->Rus";
             this.rbPolRus.UseVisualStyleBackColor = true;
             this.rbPolRus.Visible = false;
@@ -388,7 +380,6 @@
             this.rbGerman.Name = "rbGerman";
             this.rbGerman.Size = new System.Drawing.Size(147, 22);
             this.rbGerman.TabIndex = 9;
-            this.rbGerman.TabStop = true;
             this.rbGerman.Text = "Based on German";
             this.rbGerman.UseVisualStyleBackColor = true;
             this.rbGerman.Visible = false;
@@ -763,6 +754,7 @@
             this.tbSh.Name = "tbSh";
             this.tbSh.Size = new System.Drawing.Size(100, 26);
             this.tbSh.TabIndex = 45;
+            this.tbSh.Text = "w";
             // 
             // label26
             // 
@@ -779,6 +771,7 @@
             this.tbSch.Name = "tbSch";
             this.tbSch.Size = new System.Drawing.Size(100, 26);
             this.tbSch.TabIndex = 46;
+            this.tbSch.Text = "ww";
             // 
             // tbA
             // 
@@ -786,6 +779,7 @@
             this.tbA.Name = "tbA";
             this.tbA.Size = new System.Drawing.Size(100, 26);
             this.tbA.TabIndex = 20;
+            this.tbA.Text = "a";
             // 
             // tbB
             // 
@@ -793,6 +787,7 @@
             this.tbB.Name = "tbB";
             this.tbB.Size = new System.Drawing.Size(100, 26);
             this.tbB.TabIndex = 21;
+            this.tbB.Text = "b";
             // 
             // tbJa
             // 
@@ -800,6 +795,7 @@
             this.tbJa.Name = "tbJa";
             this.tbJa.Size = new System.Drawing.Size(100, 26);
             this.tbJa.TabIndex = 52;
+            this.tbJa.Text = "ja";
             // 
             // tbV
             // 
@@ -807,6 +803,7 @@
             this.tbV.Name = "tbV";
             this.tbV.Size = new System.Drawing.Size(100, 26);
             this.tbV.TabIndex = 22;
+            this.tbV.Text = "v";
             // 
             // tbJu
             // 
@@ -814,6 +811,7 @@
             this.tbJu.Name = "tbJu";
             this.tbJu.Size = new System.Drawing.Size(100, 26);
             this.tbJu.TabIndex = 51;
+            this.tbJu.Text = "ju";
             // 
             // tbG
             // 
@@ -821,6 +819,7 @@
             this.tbG.Name = "tbG";
             this.tbG.Size = new System.Drawing.Size(100, 26);
             this.tbG.TabIndex = 23;
+            this.tbG.Text = "g";
             // 
             // tbJe
             // 
@@ -828,6 +827,7 @@
             this.tbJe.Name = "tbJe";
             this.tbJe.Size = new System.Drawing.Size(100, 26);
             this.tbJe.TabIndex = 50;
+            this.tbJe.Text = "je";
             // 
             // TbMia
             // 
@@ -835,6 +835,7 @@
             this.TbMia.Name = "TbMia";
             this.TbMia.Size = new System.Drawing.Size(100, 26);
             this.TbMia.TabIndex = 49;
+            this.TbMia.Text = "\'";
             // 
             // tbD
             // 
@@ -842,6 +843,7 @@
             this.tbD.Name = "tbD";
             this.tbD.Size = new System.Drawing.Size(100, 26);
             this.tbD.TabIndex = 24;
+            this.tbD.Text = "d";
             // 
             // tbY
             // 
@@ -849,6 +851,7 @@
             this.tbY.Name = "tbY";
             this.tbY.Size = new System.Drawing.Size(100, 26);
             this.tbY.TabIndex = 48;
+            this.tbY.Text = "y";
             // 
             // tbTv
             // 
@@ -856,6 +859,7 @@
             this.tbTv.Name = "tbTv";
             this.tbTv.Size = new System.Drawing.Size(100, 26);
             this.tbTv.TabIndex = 47;
+            this.tbTv.Text = "\'\'";
             // 
             // tbE
             // 
@@ -863,6 +867,7 @@
             this.tbE.Name = "tbE";
             this.tbE.Size = new System.Drawing.Size(100, 26);
             this.tbE.TabIndex = 25;
+            this.tbE.Text = "e";
             // 
             // tbCch
             // 
@@ -870,6 +875,7 @@
             this.tbCch.Name = "tbCch";
             this.tbCch.Size = new System.Drawing.Size(100, 26);
             this.tbCch.TabIndex = 44;
+            this.tbCch.Text = "tch";
             // 
             // tbTs
             // 
@@ -877,6 +883,7 @@
             this.tbTs.Name = "tbTs";
             this.tbTs.Size = new System.Drawing.Size(100, 26);
             this.tbTs.TabIndex = 43;
+            this.tbTs.Text = "ts";
             // 
             // tbJo
             // 
@@ -884,6 +891,7 @@
             this.tbJo.Name = "tbJo";
             this.tbJo.Size = new System.Drawing.Size(100, 26);
             this.tbJo.TabIndex = 26;
+            this.tbJo.Text = "jo";
             // 
             // tbCh
             // 
@@ -891,6 +899,7 @@
             this.tbCh.Name = "tbCh";
             this.tbCh.Size = new System.Drawing.Size(100, 26);
             this.tbCh.TabIndex = 42;
+            this.tbCh.Text = "x";
             // 
             // tbF
             // 
@@ -898,6 +907,7 @@
             this.tbF.Name = "tbF";
             this.tbF.Size = new System.Drawing.Size(100, 26);
             this.tbF.TabIndex = 41;
+            this.tbF.Text = "f";
             // 
             // tbZh
             // 
@@ -905,6 +915,7 @@
             this.tbZh.Name = "tbZh";
             this.tbZh.Size = new System.Drawing.Size(100, 26);
             this.tbZh.TabIndex = 27;
+            this.tbZh.Text = "zh";
             // 
             // tbU
             // 
@@ -912,6 +923,7 @@
             this.tbU.Name = "tbU";
             this.tbU.Size = new System.Drawing.Size(100, 26);
             this.tbU.TabIndex = 40;
+            this.tbU.Text = "u";
             // 
             // tbT
             // 
@@ -919,6 +931,7 @@
             this.tbT.Name = "tbT";
             this.tbT.Size = new System.Drawing.Size(100, 26);
             this.tbT.TabIndex = 39;
+            this.tbT.Text = "t";
             // 
             // tbC
             // 
@@ -926,6 +939,7 @@
             this.tbC.Name = "tbC";
             this.tbC.Size = new System.Drawing.Size(100, 26);
             this.tbC.TabIndex = 38;
+            this.tbC.Text = "s";
             // 
             // tbR
             // 
@@ -933,6 +947,7 @@
             this.tbR.Name = "tbR";
             this.tbR.Size = new System.Drawing.Size(100, 26);
             this.tbR.TabIndex = 37;
+            this.tbR.Text = "r";
             // 
             // tbP
             // 
@@ -940,6 +955,7 @@
             this.tbP.Name = "tbP";
             this.tbP.Size = new System.Drawing.Size(100, 26);
             this.tbP.TabIndex = 36;
+            this.tbP.Text = "p";
             // 
             // tbO
             // 
@@ -947,6 +963,7 @@
             this.tbO.Name = "tbO";
             this.tbO.Size = new System.Drawing.Size(100, 26);
             this.tbO.TabIndex = 35;
+            this.tbO.Text = "o";
             // 
             // tbN
             // 
@@ -954,6 +971,7 @@
             this.tbN.Name = "tbN";
             this.tbN.Size = new System.Drawing.Size(100, 26);
             this.tbN.TabIndex = 34;
+            this.tbN.Text = "n";
             // 
             // tbM
             // 
@@ -961,6 +979,7 @@
             this.tbM.Name = "tbM";
             this.tbM.Size = new System.Drawing.Size(100, 26);
             this.tbM.TabIndex = 33;
+            this.tbM.Text = "m";
             // 
             // tbL
             // 
@@ -968,6 +987,7 @@
             this.tbL.Name = "tbL";
             this.tbL.Size = new System.Drawing.Size(100, 26);
             this.tbL.TabIndex = 32;
+            this.tbL.Text = "l";
             // 
             // tbK
             // 
@@ -975,6 +995,7 @@
             this.tbK.Name = "tbK";
             this.tbK.Size = new System.Drawing.Size(100, 26);
             this.tbK.TabIndex = 31;
+            this.tbK.Text = "k";
             // 
             // tbJ
             // 
@@ -982,6 +1003,7 @@
             this.tbJ.Name = "tbJ";
             this.tbJ.Size = new System.Drawing.Size(100, 26);
             this.tbJ.TabIndex = 30;
+            this.tbJ.Text = "j";
             // 
             // tbI
             // 
@@ -989,6 +1011,7 @@
             this.tbI.Name = "tbI";
             this.tbI.Size = new System.Drawing.Size(100, 26);
             this.tbI.TabIndex = 29;
+            this.tbI.Text = "i";
             // 
             // tbZ
             // 
@@ -996,18 +1019,20 @@
             this.tbZ.Name = "tbZ";
             this.tbZ.Size = new System.Drawing.Size(100, 26);
             this.tbZ.TabIndex = 28;
+            this.tbZ.Text = "z";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(654, 642);
+            this.ClientSize = new System.Drawing.Size(633, 614);
             this.Controls.Add(this.gbSelector);
             this.Controls.Add(this.gbEditor);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Translator v2.0";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

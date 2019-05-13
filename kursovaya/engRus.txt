@@ -1,5 +1,3 @@
-able-способный
-account-счет
 across-через
 act-действовать
 addition-дополнение
@@ -296,6 +294,7 @@ increase-увеличивать
 ink-чернила
 insect-насекомое
 invention-изобретение
+is-есть
 island-остров
 jelly-желе
 jewel-драгоценный
@@ -396,6 +395,7 @@ open-открытый
 opinion-мнение
 opposite-напротив
 or-или
+orange-апельсин
 order-заказ
 ornament-украшение
 other-другой
@@ -667,3 +667,4 @@ wood-лес
 word-слово
 work-работ
 worm-червь
+yellow-желтый

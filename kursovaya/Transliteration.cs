@@ -182,7 +182,7 @@ namespace kursovaya
                         }
                     }
                     break;
-                }
+                }                
             }
             return inputtedText;
         }

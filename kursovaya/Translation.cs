@@ -81,6 +81,10 @@ namespace kursovaya
                     string res = inputtedTextDevided[i];
                     outputtedTextDevided.Add(dictionary[res]);
                 }
+                else if (inputtedTextDevided[i] == "")
+                {
+                    var result = MessageBox.Show("Input the word!", "Warning");
+                }
                 else
                 {
                     var result = MessageBox.Show("There's no such word... Would you like" +

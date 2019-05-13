@@ -60,6 +60,7 @@
             this.richTextBox2.Size = new System.Drawing.Size(245, 139);
             this.richTextBox2.TabIndex = 1;
             this.richTextBox2.Text = "";
+            this.richTextBox2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RichTextBox2_MouseClick);
             // 
             // label1
             // 
@@ -107,6 +108,7 @@
             this.tbWordsIn.Name = "tbWordsIn";
             this.tbWordsIn.Size = new System.Drawing.Size(245, 22);
             this.tbWordsIn.TabIndex = 7;
+            this.tbWordsIn.Text = "New word";
             this.tbWordsIn.Visible = false;
             // 
             // tbWordsOu
@@ -115,6 +117,7 @@
             this.tbWordsOu.Name = "tbWordsOu";
             this.tbWordsOu.Size = new System.Drawing.Size(245, 22);
             this.tbWordsOu.TabIndex = 8;
+            this.tbWordsOu.Text = "Translation";
             this.tbWordsOu.Visible = false;
             // 
             // rbIwannaAdd
@@ -156,6 +159,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.richTextBox1);
+            this.MaximizeBox = false;
             this.Name = "_DictionaryForm";
             this.Text = " Dictionary";
             this.Load += new System.EventHandler(this.Form2_Load);

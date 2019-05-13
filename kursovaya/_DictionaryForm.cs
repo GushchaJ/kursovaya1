@@ -79,7 +79,13 @@ namespace kursovaya
             Dictionary<string, string> temp = new Dictionary<string, string>();
             string path = null;
             GetDictionary(temp, path, RbEngRus, RbRusEng, RbPolRus, RbRusPol);
-            if (tbWordsIn.Text != "" && tbWordsOu.Text != "")
+            
+            if (temp.ContainsKey(tbWordsIn.Text) || temp.ContainsKey(tbWordsOu.Text)
+                || temp.ContainsValue(tbWordsIn.Text) || temp.ContainsValue(tbWordsOu.Text))
+            {
+                MessageBox.Show("Such a word exists!", "Warning");
+            }
+            else if (tbWordsIn.Text != "" && tbWordsOu.Text != "")
             {
                 temp.Add(tbWordsIn.Text.ToLower(), tbWordsOu.Text.ToLower());
             }
@@ -176,7 +182,7 @@ namespace kursovaya
             if (rbIwannaDelete.Checked)
             {
                 btnAddNewWord.Visible = false;
-                tbWordsIn.Visible = true;
+                tbWordsIn.Visible = false;
                 tbWordsOu.Visible = false;
                 btnRemoveWord.Visible = true;
             }
@@ -195,6 +201,20 @@ namespace kursovaya
             int _firstcharindex = richTextBox2.GetFirstCharIndexFromLine(currentline);//индекс начала слова
             string _currentlinetext = richTextBox2.Lines[currentline];
             richTextBox2.Select(_firstcharindex, _currentlinetext.Length + 1);                      
+        }
+
+        private void RichTextBox2_MouseClick(object sender, MouseEventArgs e)
+        {
+            int firstcharindex = richTextBox2.GetFirstCharIndexOfCurrentLine();//индекс начала слова
+            int currentline = richTextBox2.GetLineFromCharIndex(firstcharindex);//индекс строки
+            string currentlinetext = richTextBox2.Lines[currentline];
+            richTextBox2.Select(firstcharindex, currentlinetext.Length + 1);
+
+            richTextBox1.Focus();
+
+            int _firstcharindex = richTextBox1.GetFirstCharIndexFromLine(currentline);//индекс начала слова
+            string _currentlinetext = richTextBox1.Lines[currentline];
+            richTextBox1.Select(_firstcharindex, _currentlinetext.Length + 1);
         }
     }
 }
